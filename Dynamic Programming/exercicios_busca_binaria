@@ -1,0 +1,397 @@
+#fila de pacientes e atender os mais urgentes primeiro se tiver empate atende quem chegou primeiro,
+# 1 menos urgente e 5 mais urgente
+
+fila = []
+
+while True:
+    opcao = input (" 1 - Adicionar paciente \n 2- Atender paciente \n 3- Sair ")
+
+    if opcao == '1':
+        nome = input("Digite o nome do paciente: ")
+        urgencia = int(input("Qual nível de urgencia: 1 (menos urgente) | 5 (mais urgente)"))
+
+        fila.append((nome, urgencia))
+
+        print("Fila de pacientes!")
+
+        for paciente in fila:
+            print(f"Paciente: {paciente[0]} - Urgência: {paciente[1]}")
+
+    elif opcao == '2':
+        if fila: 
+            fila.sort(key=lambda x: -x[1])
+            paciente_atendido = fila.pop(0)
+            print(f"Atendendo {paciente_atendido[0]} - Urgência: {paciente_atendido[1]}")
+        else:
+            print("Não há clientes para serem atendidos!")
+
+    elif opcao == '3':
+        print("Saindo do sistema")
+        break
+ #---------------------------------------------------------------'-----------
+#Ex 1 = Busca' Binária usando while
+
+'''def busca_binaria(lista, alvo):
+
+    l, h = 0, len(lista) - 1
+    iteracao = 0
+
+    while l <= h:
+        iteracao += 1
+        m = (l+h) // 2
+        print(f"Iteração {iteracao}: l={l}, h={h}, m={m}")
+
+        if lista[m] == alvo:
+            return m
+        elif lista[m] < alvo:
+            l = m + 1
+        else:
+            h = m - 1
+
+    return -1
+
+lista = [11, 17, 18, 45, 50, 71, 95]
+alvo = 50
+
+resultado = busca_binaria(lista, alvo)
+print(resultado)
+'''
+#-------------------------------------------------------------------------'-
+
+#Ex 2 = Busca' Bi'nária usando for
+
+'''def busca_binaria(lsita, alvo):
+    l, h = 0, len(lista) - 1
+
+    for iteracao in range(len(lista)):
+        m = (l+h) // 2
+        print(f"Iteração {iteracao}: l={l}, h={h}, m={m}")
+
+        if lista[m] == alvo:
+            return m
+        elif lista[m] < alvo:
+            l = m + 1
+        else:
+            h = m - 1
+    return -1
+
+lista = [11, 17, 18, 45, 50, 71, 95]
+alvo = 50
+
+resultado = busca_binaria(lista, alvo)
+print(resultado)'''
+
+#--------------------------------------------------------------------------
+#LIFO E FI'FO
+#Ex. 1 
+'''fila = ['cliente 1', 'cliente 2', 'cliente 3',]
+print(fila)
+cliente = fila.pop(0) #pop pega sempre o primeiro
+print(fila)
+
+cliente = fila.pop(0) 
+print(fila)'''
+
+
+#--------------------------------------------------------------------------
+#EX. 2
+'''fila = []
+fila.append("cliente 1")
+fila.append("cliente 2")
+fila.append("cliente 3")
+print(fila)
+
+fila.pop(0)
+print(fila)'''
+
+#--------------------------------------------------------------------------
+#EX. 3 atende conforme a chegada
+
+'''fila = ['cliente 1', 'cliente 2', 'cliente 3',]
+while fila:
+    cliente = fila.pop(0)
+    print(cliente)'''
+
+#--------------------------------------------------------------------------
+#EX. 4 FIFO primeiro a entrar é o primeiro a sair 
+
+'''fila = ['cliente 1', 'cliente 2', 'cliente 3',]
+i = 0
+for i in range(len(fila)):
+    cliente = fila.pop(0)
+    print(cliente)'''
+
+
+#--------------------------------------------------------------------------
+#EX. 5 LIFO daqui pra frente ultimo a entrar é o primeiro a sair
+
+'''pilha = []
+pilha.append("Chapa 1")
+pilha.append("Chapa 2")
+pilha.append("Chapa 3")
+print(pilha)
+
+pilha.pop(0)
+print(pilha)
+
+pilha.pop(0)
+print(pilha)'''
+
+
+#--------------------------------------------------------------------------
+#EX. 6 LIFO while
+
+'''pilha = ['chapa 1', 'chapa 2', 'chapa 3']
+while pilha:
+    pecas = pilha.pop()
+    print(pecas)'''
+
+
+#--------------------------------------------------------------------------
+#EX. 7 'LIFO for
+
+'''pilha = ['chapa 1', 'chapa 2', 'chapa 3']
+i = 0
+for i in range(len(pilha)):
+    pecas = pilha.pop()
+    print(pecas)
+'''
+
+#ex 1 
+
+'''NomeCliente = int(input("Digite o nome do cliente: "))
+listaAtendimento = []'''
+
+#--------------------------------------------------------------------------#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+
+#EX. 1. uma loja atendimento ordem chegada
+'''
+fila = []
+while True:
+    cliente = input("Insira o nome do cliente (ou fim para sair): ")
+    if cliente == 'fim':
+        break
+    fila.append(cliente)
+    print(f'Cliente {cliente} adicionado a fila!')
+print(fila)
+
+while fila:
+    atendido = fila.pop(0)
+    print(f"Atendendo {atendido}")
+print("Todos os clientes foram atendidos!")'''
+
+#--------------------------------------------------------------------------
+
+#EX. 2. Algoritmo para estrutura com pilha
+'''pilha = []
+while True:
+    peca = input("Digite a peça (ou fim para sair): ")
+    if peca == 'fim':
+        break
+    
+    pilha.append(peca)
+    print(f"Peça {peca} adicionada a lista!")
+
+print(pilha)
+
+while pilha:
+    retirada = pilha.pop()
+    print(f"Peças retiradas {retirada}")
+print("Todas peças retiradas")'''
+
+
+#--------------------------------------------------------------------------
+
+#EX. 3. sistema que add docs a fila de impressao e os imprima na ordem correta
+#lista prioridade alta | lista prioridade baixa
+#a impressora recebe varios docs tem nome e nivel de prioridade alta | baixa
+#os de prioridade alta sao impressos print antes do que os de prioridade baixa
+
+'''Lista_Prioridade_Alta = []
+Lista_Prioridade_baixa = []
+
+while True:
+    print("1 - Add doc alta prioridade")
+    print("2 - Add doc baixa prioridade")
+    print("3 - Imprimir docs")
+    
+   opcao = input("Digite os documentos de prioridade alta: ")
+
+    if opcao == '1':
+        documento  = input("Digite o nome do documento de alta prioridade: ")
+        Lista_Prioridade_Alta.append(documento)
+    elif opcao == '2':
+        documento  = input("Digite o nome do documento de baixa prioridade: ")
+        Lista_Prioridade_Alta.append(documento)
+    elif opcao == '3':
+        while Lista_Prioridade_Alta:
+            print(f"Lista prioridade alta {Lista_Prioridade_Alta}")
+        while Lista_Prioridade_baixa:
+        Lista_Prioridade_baixa:
+            print(f"Lista prioridade alta {Lista_Prioridade_baixa}")
+    else:
+        print("Opção inválida")'''
+        
+        
+#--------------------------------------------------------------------------
+
+#EX. 3
+
+'''fila_alta = []
+fila_baixa = []
+
+while True:
+    opcao = input("1 - Add doc | 2 - Imprimir docse |3 - Sair ")
+    
+    if opcao == '1':
+        tipo = input("Insira o tipo de doc")
+        prioridade = input("Insira a prioridade (alta/baixa)")
+        
+        if prioridade == 'alta':
+            fila_alta.append(tipo)
+        else:
+            fila_baixa.append(tipo)    
+    
+    elif opcao == '2': 
+        if fila_alta:
+            print(f"Imprimindo prioridade alta {fila_alta.pop(0)}")
+        elif fila_baixa:
+            print(f"Imprimindo prioridade baixa {fila_baixa.pop(0)}")
+        else:
+            print("Nenhum documento na fila!")
+            
+    elif opcao == '3': 
+        break'''
+
+#--------------------------------------------------------------------------
+
+#EX. 4 
+'''fila_alta = []
+fila_baixa = []
+ 
+while True:
+    opcao = input("1 - Add doc | 2 - Imprimir docse |3 - Sair ")
+    if opcao == '1':
+        tipo = input("Insira o tipo de doc")
+        prioridade = input("Insira a prioridade (alta/baixa)")
+        if prioridade == 'alta':
+            fila_alta.append(tipo)
+        else:
+            fila_baixa.append(tipo)    
+    elif opcao == '2': 
+        if fila_alta:
+            print(f"Imprimindo prioridade alta {fila_alta.pop(0)}")
+        elif fila_baixa:
+            print(f"Imprimindo prioridade baixa {fila_baixa.pop(0)}")
+        else:
+            print("Nenhum documento na fila!")
+    elif opcao == '3': 
+        break'''
+        
+#--------------------------------------------------------------------------
+lista = [12, 33, 11, 5, 45, 100, 68]
+ 
+# Passo 1: Quebrar a lista em partes menores
+listas = [[x] for x in lista]  # Cada elemento vira uma lista individual
+ 
+while len(listas) > 1:
+    novas_listas = []
+    
+    for i in range(0, len(listas), 2):
+        if i + 1 < len(listas):
+            # Mescla duas listas ordenadas
+            esquerda = listas[i]
+            direita = listas[i + 1]
+            resultado = []
+            i_esq = i_dir = 0
+            
+            while i_esq < len(esquerda) and i_dir < len(direita):
+                if esquerda[i_esq] < direita[i_dir]:
+                    resultado.append(esquerda[i_esq])
+                    i_esq += 1
+                else:
+                    resultado.append(direita[i_dir])
+                    i_dir += 1
+            
+            resultado.extend(esquerda[i_esq:])
+            resultado.extend(direita[i_dir:])
+            novas_listas.append(resultado)
+        else:
+            novas_listas.append(listas[i])
+    
+    listas = novas_listas
+ 
+print(listas[0])  # Lista ordenada
+#--------------------------------------------------------------------------
+
+lista = [12, 33, 11, 5, 45, 100, 68]
+ 
+pilha = [lista]  # Usamos uma pilha para simular a recursão
+resultado = []
+ 
+while pilha:
+    sub_lista = pilha.pop()
+    if len(sub_lista) <= 1:
+        resultado.extend(sub_lista)
+    else:
+        pivô = sub_lista[len(sub_lista) // 2]
+        menores = [x for x in sub_lista if x < pivô]
+        iguais = [x for x in sub_lista if x == pivô]
+        maiores = [x for x in sub_lista if x > pivô]
+        
+        if maiores:
+            pilha.append(maiores)
+        pilha.append(iguais)
+        if menores:
+            pilha.append(menores)
+ 
+print(resultado)  # Lista ordenada
+
+#--------------------------------------------------------------------------
+lista = [3, 5, 7, 8, 11, 14, 15]
+alvo = 11
+ 
+inicio = 0
+fim = len(lista) - 1
+iteracao = 1
+ 
+while inicio <= fim:
+    meio = (inicio + fim) // 2
+    print(f"Iteração {iteracao}: Início={inicio}, Fim={fim}, Meio={meio}, Valor no meio={lista[meio]}")
+ 
+    if lista[meio] == alvo:
+        print(f"Valor {alvo} encontrado no índice {meio}")
+        break
+    elif lista[meio] < alvo:
+        inicio = meio + 1
+    else:
+        fim = meio - 1
+    iteracao += 1
+ 
+if inicio > fim:
+    print(f"Valor {alvo} não encontrado na lista.")
+
+#--------------------------------------------------------------------------
+
+    def simular_estacionamento():
+    pilha = []
+ 
+    # Entrada de 10 carros
+    for i in range(10):
+        carro = input(f"Digite o modelo ou placa do carro {i+1}: ")
+        pilha.append(carro)
+ 
+    print("\nOrdem de entrada dos carros:")
+    for carro in pilha:
+        print(carro)
+ 
+    print("\nSequência de saída (LIFO):")
+    while pilha:
+        print(pilha.pop())
+ 
+simular_estacionamento()
+
+#--------------------------------------------------------------------------
+
