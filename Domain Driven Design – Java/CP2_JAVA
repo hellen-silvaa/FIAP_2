@@ -1,0 +1,219 @@
+//1
+public class Principal {
+
+    static class Funcionario {
+        public int getBonus() {
+            return 1000;
+        }
+    }
+
+    static class Gerente extends Funcionario {
+        @Override
+        public int getBonus() {
+            return 2000;
+        }
+    }
+
+    static class Diretor extends Gerente {
+        @Override
+        public int getBonus() {
+            return 3000;
+        }
+    }
+
+    public static void main(String[] args) {
+        Funcionario[] funcionarios = new Funcionario[3];
+        funcionarios[0] = new Funcionario();
+        funcionarios[1] = new Gerente();
+        funcionarios[2] = new Diretor();
+
+        int somaBonus = 0;
+        for (Funcionario f : funcionarios) {
+            somaBonus += f.getBonus();
+        }
+
+        System.out.println("Soma total dos bônus: " + somaBonus);
+    }
+}
+
+
+
+
+
+//2
+
+public class Principal {
+
+    static class Animal {
+        public void fazerSom() {
+            System.out.println("Som genérico");
+        }
+    }
+
+    static class Gato extends Animal {
+        @Override
+        public void fazerSom() {
+            System.out.println("Miau");
+        }
+    }
+
+    static class Cachorro extends Animal {
+        @Override
+        public void fazerSom() {
+            System.out.println("Au au");
+        }
+    }
+
+    public static void main(String[] args) {
+        Animal a1 = new Gato();
+        Animal a2 = new Cachorro();
+
+        a1.fazerSom(); 
+        a2.fazerSom(); 
+    }
+}
+
+
+//3
+public class Principal {
+
+    public static boolean ehPalindromo(char[] array, int inicio, int fim) {
+        while (inicio < fim) {
+            if (array[inicio] != array[fim]) {
+                return false;
+            }
+            inicio++;
+            fim--;
+        }
+        return true;
+    }
+
+    public static int maiorSubpalindroma(char[] array) {
+        int maxLen = 1;
+        int n = array.length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                if (ehPalindromo(array, i, j) && (j - i + 1) > maxLen) {
+                    maxLen = j - i + 1;
+                }
+            }
+        }
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        char[] letras = {'a', 'b', 'c', 'b', 'a', 'd', 'e', 'e', 'd'};
+        System.out.println(maiorSubpalindroma(letras)); 
+    }
+}
+
+//4
+
+public class Principal {
+
+    public static void main(String[] args) {
+        int[] numeros = {10, 20, 30, 40, 50};
+        int soma = 0;
+
+        for (int i = 0; i < numeros.length; i++) {
+            if (i % 2 != 0) { 
+                soma += numeros[i];
+            }
+        }
+
+        System.out.println(soma);
+    }
+}
+
+//5
+
+import java.util.HashMap; 
+
+public class Principal {
+
+    public static void main(String[] args) {
+        HashMap<String, Integer> mapa = new HashMap<>();
+        mapa.put("A", 1);
+        mapa.put("B", 2);
+        mapa.put("A", 3); 
+
+        System.out.println(mapa.get("A")); 
+    }
+}
+
+
+//6
+import java.util.*;
+
+public class Principal {
+    public static void main(String[] args) {
+        List<String> lista = new ArrayList<>();
+        lista.add("Java");
+        lista.add("Python");
+        lista.add("Java");
+        lista.add("Python");
+
+        Set<String> conjunto = new HashSet<>(lista);
+
+        System.out.println(conjunto.size()); 
+    }
+}
+
+//7
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Principal {
+
+    public static void main(String[] args) {
+        int count = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Hellen\\Downloads\\dados.txt"))) {
+            while (br.readLine() != null) {
+                count++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(count);
+    }
+}
+
+
+//8
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+
+public class Principal {
+
+    public static void main(String[] args) {
+        System.out.println("Diretório atual: " + System.getProperty("user.dir"));
+
+        Set<String> registros = new HashSet<>();
+        Map<String, Integer> contadorEstados = new TreeMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Hellen\\Downloads\\clientes.txt"))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                if (registros.add(linha)) {
+                    String estado = linha.split(";")[1];
+                    contadorEstados.put(estado, contadorEstados.getOrDefault(estado, 0) + 1);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder resultado = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : contadorEstados.entrySet()) {
+            if (resultado.length() > 0) resultado.append(", ");
+            resultado.append(entry.getKey()).append(":").append(entry.getValue());
+        }
+        System.out.println(resultado.toString());
+    }
+}
